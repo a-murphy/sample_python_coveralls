@@ -127,7 +127,7 @@ class Coveralls(object):
     def get_coverage(self):
         workman = coverage.coverage(config_file=self.config.get('config_file', True))
         workman.load()
-        workman._harvest_data()
+        workman.get_data()
         reporter = CoverallReporter(workman, workman.config)
         return reporter.report()
 

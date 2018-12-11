@@ -1,15 +1,11 @@
 language: python
 python:
-  - 2.6
   - 2.7
-  - 3.2
-  - 3.3
-install:
-  python setup.py develop
-before_script: mkdir -p shippable/codecoverage shippable/testresults
-script:
-  - coverage run --source=coveralls setup.py test
-  - coverage xml -o shippable/codecoverage/coverage.xml
-  
-after_script:
-  coveralls --verbose
+  - 3.7
+build:
+  ci:
+    - python setup.py develop
+    - mkdir -p shippable/codecoverage shippable/testresults
+    - coverage run --source=coveralls setup.py test
+    - coverage xml -o shippable/codecoverage/coverage.xml
+    - coveralls --verbose
